@@ -15,4 +15,4 @@
 
 **Ссылка на сайт**
 
-https://deker-parkes.github.io/russian-travel/index.html
+https://deker-parkes.github.io/mesto-project/index.html

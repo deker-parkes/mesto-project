@@ -7,6 +7,8 @@
     margin: 0 20px 0 0;
     align-self: center;
     justify-self: end;
+    border: none;
+    background-color: #FFFFFF00;
 }
 
 .element__heart:hover {

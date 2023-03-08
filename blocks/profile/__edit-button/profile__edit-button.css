@@ -24,7 +24,9 @@
         width: 18px;
         height: 18px;
         background-image: url(../../../images/edit-button-small.svg);
-        margin: 34px 0 0 0;
-        align-self: start;
+        margin: 0;
+        position: absolute;
+        top: 196px;
+        right: 19px;
     }
 }

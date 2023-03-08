@@ -1,16 +1,15 @@
 .popup__fields {
     display: flex;
     flex-direction: column;
-    margin: 54px 0 0 36px;
-    width: 358px;
+    margin: 46px 0 0 0;
+    width: 100%;
     padding: 0;
     border: 0;
-    gap: 30px
+    gap: 30px;
 }
 
 @media screen and (max-width: 619px) {
     .popup__fields {
-        width: 238px;
-        margin: 75px 0 0 22px;
+        margin: 73px 0 0 0;
     }
 }

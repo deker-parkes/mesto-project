@@ -12,5 +12,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 199px;
+    max-width: 199px;
 }

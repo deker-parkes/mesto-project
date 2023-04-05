@@ -1,0 +1,17 @@
+.element__recycle-bin {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    background-image: url(../../../images/recycle-bin.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: #FFFFFF00;
+}
+
+.element__recycle-bin:hover {
+    opacity: .5;
+    cursor: pointer;
+}

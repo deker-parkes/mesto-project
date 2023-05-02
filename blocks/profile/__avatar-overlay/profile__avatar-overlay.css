@@ -1,0 +1,23 @@
+.profile__avatar-overlay {
+    border: 0;
+    background-color: #000000;
+    background-image: url(../../../images/avatar-edit-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+    width: 120px;
+    height: 120px;
+    grid-area: avatar;
+    opacity: 0;
+}
+
+@media screen and (max-width: 619px) {
+    .profile__avatar-overlay {
+    justify-self: center;
+    }
+}
+
+.profile__avatar-overlay:hover {
+    opacity: .8;
+    cursor: pointer;
+}

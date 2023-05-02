@@ -3,20 +3,24 @@ const pageContent = document.querySelector('.page'); /* содержимое с�
 const profileEditButton = pageContent.querySelector('.profile__edit-button'); /* кнопка редактирования профиля*/
 const profileUserName = pageContent.querySelector('.profile__username');
 const profileUserInfo = pageContent.querySelector('.profile__user-info');
+
+const profileAvatarEditButton = pageContent.querySelector('.profile__avatar-overlay');
+const avatarForm = pageContent.querySelector('#popup-avatar-form');
+const avatarFormLink = avatarForm.querySelector('.popup__field[name="avatar-link"]');
+const avatar = pageContent.querySelector('.profile__avatar');
+
 const profileForm = pageContent.querySelector('#popup-user'); /*модальное окно редактирования профиля*/
-const profileFormCloseButton = profileForm.querySelector('.popup__close-button'); /* кнопка закрытия окна редактирования профиля*/
+
 const profileFormUserName = pageContent.querySelector('.popup__field[name="name"]');
 const profileFormUserInfo = pageContent.querySelector('.popup__field[name="about"]');
 const newCardAddButton = pageContent.querySelector('.profile__add-button'); /* кнопка добавления карточки*/
 const newCardForm = pageContent.querySelector('#popup-image-form'); /* модальное окно добавления картчоки*/
-const newCardFormCloseButton = newCardForm.querySelector('.popup__close-button'); /*кнопка закрытия окна добавления карточки*/
 const newCardFormNameField = pageContent.querySelector('.popup__field[name="place-name"]'); /*Выбираем поле названия места*/
 const newCardFormlinkField = pageContent.querySelector('.popup__field[name="place-link"]'); /*Выбираем поле ссылки на фото*/
 const placeForNewCard = pageContent.querySelector('.elements'); /*Выбираем элемент в который будет добавлена карточка*/
 const photoView = pageContent.querySelector('#popup-image'); /*Выбираем модальное окно с фотографией*/
 const photoViewPicture = photoView.querySelector('.popup__big-image'); /*Выбираем большое фото*/
 const photoViewHeading = photoView.querySelector('.popup__big-image-heading'); /*Выбираем подпись к фото*/
-const photoViewCloseButton = photoView.querySelector('.popup__close-button');
 const cardTemplate = pageContent.querySelector('#card').content;
 
 const initialCards = [
@@ -47,9 +51,16 @@ const initialCards = [
 ];
 
 
-// функция открытия и закрытия модальных окон
-function operatePopup(popup) {
-    popup.classList.toggle('popup_opened');
+// функция открытия
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+}
+
+// функция закрытия модальных окон
+function closePopup(evt, popup) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__button') || (evt.key === "Escape")) {
+    popup.classList.remove('popup_opened');
+  }
 }
 
 // функция, заполняющая поля формы редактирования профиля значениями со страницы
@@ -58,20 +69,23 @@ function fillProfileInputs() {
     profileFormUserInfo.value = profileUserInfo.textContent;
 }
 
-// функция, очищающая поля формы редактирования профиля после отправки формы
-function clearFields() {
-    profileFormUserName.value = "";
-    profileFormUserInfo.value = "";
-}
-
 // функция, добавляющая информацию о пользователе на страницу
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileUserName.textContent = profileFormUserName.value;
     profileUserInfo.textContent = profileFormUserInfo.value;
-    clearFields();
-    operatePopup(profileForm);
+    closePopup(evt, profileForm);
+    evt.target.reset();
+}
+
+//функция, добавляющая новый аватар
+
+function handleAvatarFormSubmit(evt) {
+    evt.preventDefault();
+    avatar.src = avatarFormLink.value;
+    closePopup(evt, avatarForm);
+    evt.target.reset();
 }
 
 //функция создания карточки из шаблона
@@ -95,7 +109,7 @@ function createCard(nameOfPlace, placePic, placeAlt) {
         photoViewPicture.src = evt.target.src
         photoViewPicture.alt = evt.target.alt
         photoViewHeading.textContent = nameOfPlace;
-        operatePopup(photoView)
+        openPopup(photoView)
     });
     return newCard;
 }
@@ -105,19 +119,21 @@ function createCard(nameOfPlace, placePic, placeAlt) {
 function handleCardFormSubmit(evt) {
     evt.preventDefault();
     placeForNewCard.prepend(createCard(newCardFormNameField.value, newCardFormlinkField.value, newCardFormNameField.value)); /* добавляем карточку на страницу */
-    operatePopup(newCardForm);
+    closePopup(evt, newCardForm);
     evt.target.reset();
 }
 
 // открытие и закрытие окна редактирования профиля пользователя
 
-profileEditButton.addEventListener('click', ()=> {operatePopup(profileForm), fillProfileInputs()}); /* отслеживание нажатия на кнопку редактирования профиля*/
-profileFormCloseButton.addEventListener('click', ()=>operatePopup(profileForm)); /* отслеживание нажатия на кнопку закрытия окна редактирования профиля*/
+profileEditButton.addEventListener('click', ()=> {openPopup(profileForm), fillProfileInputs()}); /* отслеживание нажатия на кнопку редактирования профиля*/
+profileForm.addEventListener('click', (evt)=>closePopup(evt, profileForm));
+pageContent.addEventListener('keydown', (evt)=>closePopup(evt, profileForm));
 
 // открытие и закрытие окна добавления карточки
 
-newCardAddButton.addEventListener('click', ()=>operatePopup(newCardForm)); /* отслеживание нажатия кнопки открытия окна добавления карточки */
-newCardFormCloseButton.addEventListener('click', ()=>operatePopup(newCardForm)); /* отслеживание нажатия кнопки закрытия окна карточки */
+newCardAddButton.addEventListener('click', ()=>openPopup(newCardForm)); /* отслеживание нажатия кнопки открытия окна добавления карточки */
+newCardForm.addEventListener('click', (evt)=>closePopup(evt, newCardForm)); /* отслеживание нажатия кнопки закрытия окна карточки */
+pageContent.addEventListener('keydown', (evt)=>closePopup(evt, newCardForm));
 
 // добавление информации о пользователе на страницу
 
@@ -133,6 +149,93 @@ initialCards.forEach(element => {
   placeForNewCard.append(createCard(element.name, element.link, element.name)); /* добавляем карточку на страницу */
 });
 
-//открытие и закрытие модального окна с фотографией
+//закрытие модального окна с фотографией
 
-photoViewCloseButton.addEventListener('click', ()=>operatePopup(photoView));
+photoView.addEventListener('click', (evt)=>closePopup(evt, photoView));
+pageContent.addEventListener('keydown', (evt)=>closePopup(evt, photoView));
+
+//открытие и закрытие окна редактирования аватара
+
+profileAvatarEditButton.addEventListener('click', ()=>openPopup(avatarForm));
+avatarForm.addEventListener('click', (evt)=>closePopup(evt, avatarForm));
+pageContent.addEventListener('keydown', (evt)=>closePopup(evt, avatarForm));
+
+//добавление нового аватара на страницу
+avatarForm.addEventListener('submit', (handleAvatarFormSubmit));
+
+
+
+// валидация полей
+
+
+function showInputError(form, element, message) {
+  const errorMessage = form.querySelector(`.popup__input-error_type_${element.name}`);
+  element.classList.add('popup__field_error');
+  errorMessage.classList.add('popup__input-error_active');
+  errorMessage.textContent = message;
+}
+
+function hideInputError(form, element) {
+  const errorMessage = form.querySelector(`.popup__input-error_type_${element.name}`);
+  element.classList.remove('popup__field_error');
+  errorMessage.classList.remove('popup__input-error_active');
+  errorMessage.textContent = "";
+}
+
+function isValid(form, field) {
+  if (field.validity.patternMismatch){
+    field.setCustomValidity(field.dataset.errorMessage);
+  } else {
+    field.setCustomValidity("");
+  }
+
+  if (!field.validity.valid) {
+    showInputError(form, field, field.validationMessage);
+  } else {
+    hideInputError(form, field);
+  }
+}
+
+function setEventListeners(form) {
+  const fieldList = Array.from(form.querySelectorAll('.popup__field'));
+  const buttonElement = form.querySelector('.popup__button');
+  toggleButtonState(fieldList, buttonElement);
+  fieldList.forEach((field) => {
+    field.addEventListener('input', () => {
+      isValid(form, field);
+      toggleButtonState(fieldList, buttonElement);
+    });
+  });
+}
+
+function enableValidation(settings) {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+  formList.forEach((element) => {
+    setEventListeners(element);
+  });
+}
+
+function hasInvalidInput(form) {
+  return form.some((field) => {
+    return !field.validity.valid;
+  });
+}
+
+function toggleButtonState(form, buttonElement) {
+  if (hasInvalidInput(form)) {
+    buttonElement.classList.add('popup__button_disabled');
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove('popup__button_disabled');
+    buttonElement.disabled = false;
+  }
+}
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});

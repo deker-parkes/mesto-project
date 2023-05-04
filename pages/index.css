@@ -41,12 +41,6 @@
 @import url(../blocks/popup/__big-image/popup__big-image.css);
 @import url(../blocks/popup/__big-image-heading/popup__big-image-heading.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_about.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_avatar-link.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_name.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_place-link.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_place-link.css);
-@import url(../blocks/popup/__input-error/_type/popup__input-error_type_place-name.css);
 @import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 
 @import url(../blocks/footer/footer.css);

@@ -28,9 +28,9 @@
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__fields">
             <input type="text" name="name" class="popup__field" placeholder="Имя пользователя" minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-Я\- ]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
-            <span class="popup__input-error popup__input-error_type_name"></span>
+            <span class="popup__input-error" id="name"></span>
             <input type="text" name="about" class="popup__field" placeholder="О себе" minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-Я\- ]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
-            <span class="popup__input-error popup__input-error_type_about"></span>
+            <span class="popup__input-error" id="about"></span>
           </fieldset>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
@@ -43,9 +43,9 @@
           <h2 class="popup__heading">Новое место</h2>
           <fieldset class="popup__fields">
             <input type="text" name="place-name" class="popup__field" placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-Я\- ]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
-            <span class="popup__input-error popup__input-error_type_place-name"></span>
+            <span class="popup__input-error" id="place-name"></span>
             <input type="url" name="place-link" class="popup__field" placeholder="Ссылка на картинку" required>
-            <span class="popup__input-error popup__input-error_type_place-link"></span>
+            <span class="popup__input-error" id="place-link"></span>
           </fieldset>
           <button type="submit" class="popup__button">Создать</button>
         </form>
@@ -65,7 +65,7 @@
           <h2 class="popup__heading">Обновить аватар</h2>
           <fieldset class="popup__fields">
             <input type="url" name="avatar-link" class="popup__field" placeholder="Ссылка на аватар" required>
-            <span class="popup__input-error popup__input-error_type_avatar-link"></span>
+            <span class="popup__input-error" id="avatar-link"></span>
           </fieldset>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>

@@ -2,6 +2,15 @@ import { enableValidation } from "./validate.js";
 import { createCard, handleCardFormSubmit } from "./card.js";
 import { fillProfileInputs, handleProfileFormSubmit, handleAvatarFormSubmit } from "./modal.js";
 import { openPopup, closePopup, pageContent, avatarForm, photoView } from "./utils.js";
+import '../pages/index.css';
+
+const photo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
+const photoTwo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg', import.meta.url);
+const photoThree = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg', import.meta.url);
+const photoFour = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg', import.meta.url);
+const photoFive = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg', import.meta.url);
+const photoSix = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg', import.meta.url);
+
 
 
 const profileEditButton = pageContent.querySelector('.profile__edit-button'); /* кнопка редактирования профиля*/
@@ -17,27 +26,27 @@ const placeForNewCard = pageContent.querySelector('.elements'); /*Выбирае
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: photo
   },
   {
     name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    link: photoTwo
   },
   {
     name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    link: photoThree
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: photoFour
   },
   {
     name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    link: photoFive
   },
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: photoSix
   }
 ];
 

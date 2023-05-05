@@ -1,4 +1,4 @@
-import { pageContent, photoView, closePopup } from './utils.js';
+import { pageContent, photoView, closePopup, openPopup } from './utils.js';
 import { newCardForm, placeForNewCard} from './script.js';
 
 const cardTemplate = pageContent.querySelector('#card').content;

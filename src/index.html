@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/mesto-logo.svg" alt="Логотип сайта">
+    <img class="header__logo" src="<%=require('./images/mesto-logo.svg')%>" alt="Логотип сайта">
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+      <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар">
       <button class="profile__avatar-overlay" type="button"></button>
       <h1 class="profile__username">Жак-Ив Кусто</h1>
       <p class="profile__user-info">Исследователь океана</p>
@@ -83,10 +82,5 @@
       <button class="element__recycle-bin" type="button"></button>
     </div>
   </template>
-  <script type="module" src="./components/script.js"></script>
-  <script type="module" src="./components/modal.js"></script>
-  <script type="module" src="./components/card.js"></script>
-  <script type="module" src="./components/validate.js"></script>
-  <script type="module" src="./components/utils.js"></script>
 </body>
 </html>

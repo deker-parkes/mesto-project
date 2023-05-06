@@ -1,4 +1,4 @@
-import {pageContent, avatarForm, closePopup} from './utils.js';
+import {pageContent, avatarForm, closePopup, deleteErrors} from './utils.js';
 import {profileForm} from './script.js';
 
 
@@ -23,17 +23,20 @@ function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileUserName.textContent = profileFormUserName.value;
     profileUserInfo.textContent = profileFormUserInfo.value;
-    closePopup(evt, profileForm);
-    evt.target.reset();
+    closePopup(profileForm);
 }
 
 //функция, добавляющая новый аватар
 
 function handleAvatarFormSubmit(evt) {
+    const popupButton = avatarForm.querySelector('.popup__button');
     evt.preventDefault();
     avatar.src = avatarFormLink.value;
-    closePopup(evt, avatarForm);
+    closePopup(avatarForm);
     evt.target.reset();
+    popupButton.classList.add('popup__button_disabled');
+    popupButton.disabled = true;
+
 }
 
 export {fillProfileInputs, handleProfileFormSubmit, handleAvatarFormSubmit};

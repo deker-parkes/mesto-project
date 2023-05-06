@@ -3,19 +3,25 @@ const avatarForm = pageContent.querySelector('#popup-avatar-form');
 const photoView = pageContent.querySelector('#popup-image'); /*Выбираем модальное окно с фотографией*/
 
 
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = pageContent.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 
 // функция открытия модального окна
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    pageContent.addEventListener('keydown', closeByEscape);
 }
 
 // функция закрытия модальных окон
-function closePopup(evt, popup) {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__button') || (evt.key === "Escape")) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    deleteErrors(popup);
-  }
+    pageContent.removeEventListener('keydown', closeByEscape);
+
 }
 
 // функция удаления сообщений об ошибках при закрытии модального окна
@@ -32,4 +38,12 @@ function deleteErrors(popup) {
   });
 }
 
-export {openPopup, closePopup, pageContent, avatarForm, photoView};
+function handlePopupClose(evt) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__button')) {
+    const popupOpened = pageContent.querySelector('.popup_opened');
+    closePopup(popupOpened);
+    deleteErrors(popupOpened);
+}}
+
+
+export {openPopup, closePopup, handlePopupClose, deleteErrors, pageContent, avatarForm, photoView};

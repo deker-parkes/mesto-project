@@ -1,4 +1,4 @@
-import { pageContent, photoView, closePopup, openPopup } from './utils.js';
+import { pageContent, photoView, closePopup, openPopup, deleteErrors } from './utils.js';
 import { newCardForm, placeForNewCard} from './script.js';
 
 const cardTemplate = pageContent.querySelector('#card').content;
@@ -39,10 +39,13 @@ function createCard(nameOfPlace, placePic, placeAlt) {
 // функция, добавляющая новую карточку на страницу
 
 function handleCardFormSubmit(evt) {
+    const popupButton = newCardForm.querySelector('.popup__button');
     evt.preventDefault();
     placeForNewCard.prepend(createCard(newCardFormNameField.value, newCardFormlinkField.value, newCardFormNameField.value)); /* добавляем карточку на страницу */
-    closePopup(evt, newCardForm);
+    closePopup(newCardForm);
     evt.target.reset();
+    popupButton.classList.add('popup__button_disabled');
+    popupButton.disabled = true;
 }
 
 export {createCard, handleCardFormSubmit};

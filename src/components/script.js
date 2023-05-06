@@ -1,7 +1,7 @@
 import { enableValidation } from "./validate.js";
 import { createCard, handleCardFormSubmit } from "./card.js";
 import { fillProfileInputs, handleProfileFormSubmit, handleAvatarFormSubmit } from "./modal.js";
-import { openPopup, closePopup, pageContent, avatarForm, photoView } from "./utils.js";
+import { openPopup, closePopup, pageContent, avatarForm, photoView, handlePopupClose } from "./utils.js";
 import '../pages/index.css';
 
 const photo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
@@ -56,14 +56,12 @@ export {newCardForm, placeForNewCard, profileForm}
 // открытие и закрытие окна редактирования профиля пользователя
 
 profileEditButton.addEventListener('click', ()=> {openPopup(profileForm), fillProfileInputs()}); /* отслеживание нажатия на кнопку редактирования профиля*/
-profileForm.addEventListener('click', (evt)=>closePopup(evt, profileForm));
-pageContent.addEventListener('keydown', (evt)=>closePopup(evt, profileForm));
+profileForm.addEventListener('mousedown', (evt)=>handlePopupClose(evt));
 
 // открытие и закрытие окна добавления карточки
 
 newCardAddButton.addEventListener('click', ()=>openPopup(newCardForm)); /* отслеживание нажатия кнопки открытия окна добавления карточки */
-newCardForm.addEventListener('click', (evt)=>closePopup(evt, newCardForm)); /* отслеживание нажатия кнопки закрытия окна карточки */
-pageContent.addEventListener('keydown', (evt)=>closePopup(evt, newCardForm));
+newCardForm.addEventListener('mousedown', (evt)=>handlePopupClose(evt)); /* отслеживание нажатия кнопки закрытия окна карточки */
 
 // добавление информации о пользователе на страницу
 
@@ -81,14 +79,12 @@ initialCards.forEach(element => {
 
 //закрытие модального окна с фотографией
 
-photoView.addEventListener('click', (evt)=>closePopup(evt, photoView));
-pageContent.addEventListener('keydown', (evt)=>closePopup(evt, photoView));
+photoView.addEventListener('mousedown', (evt)=>handlePopupClose(evt));
 
 //открытие и закрытие окна редактирования аватара
 
 profileAvatarEditButton.addEventListener('click', ()=>openPopup(avatarForm));
-avatarForm.addEventListener('click', (evt)=>closePopup(evt, avatarForm));
-pageContent.addEventListener('keydown', (evt)=>closePopup(evt, avatarForm));
+avatarForm.addEventListener('mousedown', (evt)=>handlePopupClose(evt));
 
 //добавление нового аватара на страницу
 avatarForm.addEventListener('submit', (handleAvatarFormSubmit));

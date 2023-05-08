@@ -42,7 +42,6 @@ function handlePopupClose(evt) {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__button')) {
     const popupOpened = pageContent.querySelector('.popup_opened');
     closePopup(popupOpened);
-    deleteErrors(popupOpened);
 }}
 
 

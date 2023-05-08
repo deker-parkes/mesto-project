@@ -1,7 +1,7 @@
 import { enableValidation } from "./validate.js";
 import { createCard, handleCardFormSubmit } from "./card.js";
 import { fillProfileInputs, handleProfileFormSubmit, handleAvatarFormSubmit } from "./modal.js";
-import { openPopup, closePopup, pageContent, avatarForm, photoView, handlePopupClose } from "./utils.js";
+import { openPopup, closePopup, pageContent, avatarForm, photoView, handlePopupClose, deleteErrors } from "./utils.js";
 import '../pages/index.css';
 
 const photo = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
@@ -55,7 +55,7 @@ export {newCardForm, placeForNewCard, profileForm}
 
 // открытие и закрытие окна редактирования профиля пользователя
 
-profileEditButton.addEventListener('click', ()=> {openPopup(profileForm), fillProfileInputs()}); /* отслеживание нажатия на кнопку редактирования профиля*/
+profileEditButton.addEventListener('click', ()=> {openPopup(profileForm), fillProfileInputs(), deleteErrors(profileForm)}); /* отслеживание нажатия на кнопку редактирования профиля*/
 profileForm.addEventListener('mousedown', (evt)=>handlePopupClose(evt));
 
 // открытие и закрытие окна добавления карточки
